@@ -167,7 +167,6 @@ public enum Techniques {
     ZoomOutUp(ZoomOutUpAnimator.class);
 
 
-
     private Class animatorClazz;
 
     private Techniques(Class clazz) {

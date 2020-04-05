@@ -30,7 +30,6 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.Interpolator;
 
-
 import androidx.core.view.ViewCompat;
 
 import java.util.ArrayList;
@@ -38,11 +37,10 @@ import java.util.List;
 
 public class YoYo {
 
-    private static final long DURATION = BaseViewAnimator.DURATION;
-    private static final long NO_DELAY = 0;
     public static final int INFINITE = -1;
     public static final float CENTER_PIVOT = Float.MAX_VALUE;
-
+    private static final long DURATION = BaseViewAnimator.DURATION;
+    private static final long NO_DELAY = 0;
     private BaseViewAnimator animator;
     private long duration;
     private long delay;
@@ -74,6 +72,35 @@ public class YoYo {
 
     public static AnimationComposer with(BaseViewAnimator animator) {
         return new AnimationComposer(animator);
+    }
+
+    private BaseViewAnimator play() {
+        animator.setTarget(target);
+
+        if (pivotX == YoYo.CENTER_PIVOT) {
+            ViewCompat.setPivotX(target, target.getMeasuredWidth() / 2.0f);
+        } else {
+            target.setPivotX(pivotX);
+        }
+        if (pivotY == YoYo.CENTER_PIVOT) {
+            ViewCompat.setPivotY(target, target.getMeasuredHeight() / 2.0f);
+        } else {
+            target.setPivotY(pivotY);
+        }
+
+        animator.setDuration(duration)
+                .setRepeatTimes(repeatTimes)
+                .setRepeatMode(repeatMode)
+                .setInterpolator(interpolator)
+                .setStartDelay(delay);
+
+        if (callbacks.size() > 0) {
+            for (Animator.AnimatorListener callback : callbacks) {
+                animator.addAnimatorListener(callback);
+            }
+        }
+        animator.animate();
+        return animator;
     }
 
     public interface AnimatorCallback {
@@ -249,35 +276,6 @@ public class YoYo {
             if (reset)
                 animator.reset(target);
         }
-    }
-
-    private BaseViewAnimator play() {
-        animator.setTarget(target);
-
-        if (pivotX == YoYo.CENTER_PIVOT) {
-            ViewCompat.setPivotX(target, target.getMeasuredWidth() / 2.0f);
-        } else {
-            target.setPivotX(pivotX);
-        }
-        if (pivotY == YoYo.CENTER_PIVOT) {
-            ViewCompat.setPivotY(target, target.getMeasuredHeight() / 2.0f);
-        } else {
-            target.setPivotY(pivotY);
-        }
-
-        animator.setDuration(duration)
-                .setRepeatTimes(repeatTimes)
-                .setRepeatMode(repeatMode)
-                .setInterpolator(interpolator)
-                .setStartDelay(delay);
-
-        if (callbacks.size() > 0) {
-            for (Animator.AnimatorListener callback : callbacks) {
-                animator.addAnimatorListener(callback);
-            }
-        }
-        animator.animate();
-        return animator;
     }
 
 }

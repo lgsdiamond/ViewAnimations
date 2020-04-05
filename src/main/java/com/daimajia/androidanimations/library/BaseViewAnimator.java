@@ -95,18 +95,13 @@ public abstract class BaseViewAnimator {
         mAnimatorSet.start();
     }
 
-    public BaseViewAnimator setDuration(long duration) {
-        mDuration = duration;
-        return this;
+    public long getStartDelay() {
+        return mAnimatorSet.getStartDelay();
     }
 
     public BaseViewAnimator setStartDelay(long delay) {
         getAnimatorAgent().setStartDelay(delay);
         return this;
-    }
-
-    public long getStartDelay() {
-        return mAnimatorSet.getStartDelay();
     }
 
     public BaseViewAnimator addAnimatorListener(Animator.AnimatorListener l) {
@@ -141,6 +136,11 @@ public abstract class BaseViewAnimator {
 
     public long getDuration() {
         return mDuration;
+    }
+
+    public BaseViewAnimator setDuration(long duration) {
+        mDuration = duration;
+        return this;
     }
 
     public AnimatorSet getAnimatorAgent() {
