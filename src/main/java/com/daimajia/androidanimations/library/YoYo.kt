@@ -45,12 +45,12 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
     private fun play(): BaseViewAnimator? {
         animator!!.setTarget(target)
         if (pivotX == CENTER_PIVOT) {
-            ViewCompat.setPivotX(target, target!!.measuredWidth / 2.0f)
+            target!!.pivotX = target!!.measuredWidth / 2.0f
         } else {
             target!!.pivotX = pivotX
         }
         if (pivotY == CENTER_PIVOT) {
-            ViewCompat.setPivotY(target, target.measuredHeight / 2.0f)
+            target.pivotY = target.measuredHeight / 2.0f
         } else {
             target.pivotY = pivotY
         }
@@ -58,7 +58,7 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
             .setRepeatTimes(repeatTimes)
             .setRepeatMode(repeatMode)
             .setInterpolator(interpolator).startDelay = delay
-        if (callbacks.size > 0) {
+        if (callbacks.isNotEmpty()) {
             for (callback in callbacks) {
                 animator.addAnimatorListener(callback)
             }
