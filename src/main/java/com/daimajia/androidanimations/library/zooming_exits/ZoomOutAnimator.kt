@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class ZoomOutAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 1f, 0f, 0f),
             ObjectAnimator.ofFloat(target, "scaleX", 1f, 0.3f, 0f),

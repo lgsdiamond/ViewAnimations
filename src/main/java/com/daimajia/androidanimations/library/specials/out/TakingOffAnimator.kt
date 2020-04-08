@@ -7,7 +7,7 @@ import com.daimajia.easing.Glider
 import com.daimajia.easing.Skill
 
 class TakingOffAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             Glider.glide(Skill.QuintEaseOut, duration.toFloat(), ObjectAnimator.ofFloat(target, "scaleX", 1f, 1.5f)),
             Glider.glide(Skill.QuintEaseOut, duration.toFloat(), ObjectAnimator.ofFloat(target, "scaleY", 1f, 1.5f)),

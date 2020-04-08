@@ -27,11 +27,10 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.Interpolator
-import androidx.core.view.ViewCompat
 import java.util.*
 
 class YoYo private constructor(animationComposer: AnimationComposer) {
-    private val animator: BaseViewAnimator?
+    private val animator: BaseViewAnimator
     private val duration: Long
     private val delay: Long
     private val repeat: Boolean
@@ -41,13 +40,13 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
     private val pivotX: Float
     private val pivotY: Float
     private val callbacks: List<Animator.AnimatorListener>
-    private val target: View?
-    private fun play(): BaseViewAnimator? {
-        animator!!.setTarget(target)
+    private val target: View
+    private fun play(): BaseViewAnimator {
+        animator.setTarget(target)
         if (pivotX == CENTER_PIVOT) {
-            target!!.pivotX = target!!.measuredWidth / 2.0f
+            target.pivotX = target.measuredWidth / 2.0f
         } else {
-            target!!.pivotX = pivotX
+            target.pivotX = pivotX
         }
         if (pivotY == CENTER_PIVOT) {
             target.pivotY = target.measuredHeight / 2.0f
@@ -81,7 +80,7 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
     class AnimationComposer {
         val callbacks: MutableList<Animator.AnimatorListener> =
             ArrayList()
-        var animator: BaseViewAnimator?
+        var animator: BaseViewAnimator
         var duration = DURATION
         var delay = NO_DELAY
         var repeat = false
@@ -90,7 +89,7 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
         var pivotX = CENTER_PIVOT
         var pivotY = CENTER_PIVOT
         var interpolator: Interpolator? = null
-        var target: View? = null
+        lateinit var target: View
 
         constructor(techniques: Techniques) {
             animator = techniques.animator
@@ -186,7 +185,7 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
             return this
         }
 
-        fun playOn(target: View?): YoYoString {
+        fun playOn(target: View): YoYoString {
             this.target = target
             return YoYoString(YoYo(this).play(), this.target)
         }
@@ -195,16 +194,16 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
     /**
      * YoYo string, you can use this string to control your YoYo.
      */
-    class YoYoString(private val animator: BaseViewAnimator?, private val target: View?) {
+    class YoYoString(private val animator: BaseViewAnimator, private val target: View?) {
         val isStarted: Boolean
-            get() = animator!!.isStarted
+            get() = animator.isStarted
 
         val isRunning: Boolean
-            get() = animator!!.isRunning
+            get() = animator.isRunning
 
         @JvmOverloads
         fun stop(reset: Boolean = true) {
-            animator!!.cancel()
+            animator.cancel()
             if (reset) animator.reset(target)
         }
 
@@ -213,7 +212,7 @@ class YoYo private constructor(animationComposer: AnimationComposer) {
     companion object {
         const val INFINITE = -1
         val CENTER_PIVOT = Float.MAX_VALUE
-        private val DURATION: Long = BaseViewAnimator.Companion.DURATION
+        private const val DURATION: Long = BaseViewAnimator.Companion.DURATION
         private const val NO_DELAY: Long = 0
         fun with(techniques: Techniques): AnimationComposer {
             return AnimationComposer(techniques)

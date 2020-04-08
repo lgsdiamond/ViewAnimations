@@ -30,8 +30,8 @@ import com.daimajia.easing.Glider
 import com.daimajia.easing.Skill
 
 class HingeAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val x = target!!.paddingLeft.toFloat()
+    override fun prepare(target: View) {
+        val x = target.paddingLeft.toFloat()
         val y = target.paddingTop.toFloat()
         animatorAgent.playTogether(
             Glider.glide(Skill.SineEaseInOut, 1300f, ObjectAnimator.ofFloat(target, "rotation", 0f, 80f, 60f, 80f, 60f, 60f)),

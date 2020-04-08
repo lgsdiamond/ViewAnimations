@@ -28,8 +28,8 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class SlideInDownAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val distance = target!!.top + target.height
+    override fun prepare(target: View) {
+        val distance = target.top + target.height
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 0f, 1f),
             ObjectAnimator.ofFloat(target, "translationY", -distance.toFloat(), 0f)

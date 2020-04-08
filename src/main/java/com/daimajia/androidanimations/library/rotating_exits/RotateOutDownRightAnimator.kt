@@ -28,8 +28,8 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class RotateOutDownRightAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val x = target!!.width - target.paddingRight.toFloat()
+    override fun prepare(target: View) {
+        val x = target.width - target.paddingRight.toFloat()
         val y = target.height - target.paddingBottom.toFloat()
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 1f, 0f),

@@ -29,8 +29,8 @@ import android.view.ViewGroup
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class SlideOutDownAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val parent = target!!.parent as ViewGroup
+    override fun prepare(target: View) {
+        val parent = target.parent as ViewGroup
         val distance = parent.height - target.top
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 1f, 0f),

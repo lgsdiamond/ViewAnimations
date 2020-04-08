@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class BounceAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "translationY", 0f, 0f, -30f, 0f, -15f, 0f, 0f)
         )

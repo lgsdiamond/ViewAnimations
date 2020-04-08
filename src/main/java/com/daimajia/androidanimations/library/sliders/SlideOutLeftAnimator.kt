@@ -28,10 +28,10 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class SlideOutLeftAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 1f, 0f),
-            ObjectAnimator.ofFloat(target, "translationX", 0f, -target!!.right.toFloat())
+            ObjectAnimator.ofFloat(target, "translationX", 0f, -target.right.toFloat())
         )
     }
 }

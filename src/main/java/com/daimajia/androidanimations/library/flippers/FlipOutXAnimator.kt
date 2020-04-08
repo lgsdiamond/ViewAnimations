@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class FlipOutXAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "rotationX", 0f, 90f),
             ObjectAnimator.ofFloat(target, "alpha", 1f, 0f)

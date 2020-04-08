@@ -28,8 +28,8 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class StandUpAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val x = ((target!!.width - target.paddingLeft - target.paddingRight) / 2
+    override fun prepare(target: View) {
+        val x = ((target.width - target.paddingLeft - target.paddingRight) / 2
                 + target.paddingLeft).toFloat()
         val y = target.height - target.paddingBottom.toFloat()
         animatorAgent.playTogether(

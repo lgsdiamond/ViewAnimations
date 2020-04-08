@@ -28,8 +28,8 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class WobbleAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val width = target!!.width.toFloat()
+    override fun prepare(target: View) {
+        val width = target.width.toFloat()
         val one = (width / 100.0).toFloat()
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "translationX", 0 * one, -25 * one, 20 * one, -15 * one, 10 * one, -5 * one, 0 * one, 0f),

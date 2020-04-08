@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class ZoomInAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "scaleX", 0.45f, 1f),
             ObjectAnimator.ofFloat(target, "scaleY", 0.45f, 1f),

@@ -35,8 +35,8 @@ abstract class BaseViewAnimator {
     var duration = DURATION
     private var mRepeatTimes = 0
     private var mRepeatMode = ValueAnimator.RESTART
-    protected abstract fun prepare(target: View?)
-    fun setTarget(target: View?): BaseViewAnimator {
+    protected abstract fun prepare(target: View)
+    fun setTarget(target: View): BaseViewAnimator {
         reset(target)
         prepare(target)
         return this

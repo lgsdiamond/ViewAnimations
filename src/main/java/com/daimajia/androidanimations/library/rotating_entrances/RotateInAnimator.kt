@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class RotateInAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "rotation", -200f, 0f),
             ObjectAnimator.ofFloat(target, "alpha", 0f, 1f)

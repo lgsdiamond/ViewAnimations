@@ -28,7 +28,7 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class PulseAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "scaleY", 1f, 1.1f, 1f),
             ObjectAnimator.ofFloat(target, "scaleX", 1f, 1.1f, 1f)

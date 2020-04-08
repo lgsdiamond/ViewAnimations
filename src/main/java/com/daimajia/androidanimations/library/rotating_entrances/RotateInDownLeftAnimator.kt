@@ -28,8 +28,8 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class RotateInDownLeftAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
-        val x = target!!.paddingLeft.toFloat()
+    override fun prepare(target: View) {
+        val x = target.paddingLeft.toFloat()
         val y = target.height - target.paddingBottom.toFloat()
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "rotation", -90f, 0f),

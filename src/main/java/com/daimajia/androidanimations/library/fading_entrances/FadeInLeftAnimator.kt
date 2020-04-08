@@ -28,10 +28,10 @@ import android.view.View
 import com.daimajia.androidanimations.library.BaseViewAnimator
 
 class FadeInLeftAnimator : BaseViewAnimator() {
-    override fun prepare(target: View?) {
+    override fun prepare(target: View) {
         animatorAgent.playTogether(
             ObjectAnimator.ofFloat(target, "alpha", 0f, 1f),
-            ObjectAnimator.ofFloat(target, "translationX", -target!!.width / 4.toFloat(), 0f)
+            ObjectAnimator.ofFloat(target, "translationX", -target.width / 4.toFloat(), 0f)
         )
     }
 }
