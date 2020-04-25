@@ -31,7 +31,7 @@ import android.view.animation.Interpolator
 import androidx.core.view.ViewCompat
 
 abstract class BaseViewAnimator {
-    lateinit var animatorAgent: AnimatorSet
+    var animatorAgent: AnimatorSet
     var duration = DURATION
     private var mRepeatTimes = 0
     private var mRepeatMode = ValueAnimator.RESTART
